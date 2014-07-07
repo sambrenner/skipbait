@@ -16,7 +16,7 @@ page = requests.get('http://www.buzzfeed.com/bradesposito/no-pants-dance').text
 
 vine_pattern = 'https?://[www\.]?vine.co/v/[A-Za-z0-9]+/'
 vine = re.search(vine_pattern, page)
-ar
+
 youtube_pattern = 'https?://[www\.]?youtube.com/watch\?v=[A-Za-z0-9]+'
 youtube = re.search(youtube_pattern, page)
 
