@@ -1,0 +1,1 @@
+web: gunicorn skipbait:app --log-file=-
