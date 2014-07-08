@@ -1,11 +1,9 @@
 SkipBait
 =========
 
-__Skip over the pastures of content farms and go straight to the milk.__ 
+SkipBait is a webservice and browser extension that allows clickbait to be skipped over in daily web browsing. 
 
-SkipBait is a webservice and browser extension that allows content farms to be skipped over in daily web browsing. 
-
-Sites like BuzzFeed and HuffPo use bombastic headlines and thumbnail images as bait to lure you towards embedded content so they can collect data on you and serve you ads. SkipBait bypasses this, meaning that links leading to content farms are redirected straight to the source material (where you will likely encounter more ads and trackers, but that's for a different project to handle).
+Sites like BuzzFeed and HuffPo use bombastic headlines and thumbnail images as bait to lure you towards embedded content so they can collect data on you and serve you ads. SkipBait bypasses this, meaning that links containing clickbait are redirected straight to the source material (where you will likely encounter more ads and trackers, but that's for a different project to handle).
 
 Why?
 ---
