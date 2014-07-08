@@ -1,7 +1,3 @@
-# here's a url to test this with. since the app consumes the url to skip as a url parameter,
-# it is necessary to escape the url to skip.
-# http://127.0.0.1:5000/skip/http%3A%2F%2Fwww.buzzfeed.com%2Fbradesposito%2Fno-pants-dance
-
 import requests
 import re
 import urllib
@@ -13,8 +9,11 @@ app.debug = True
 
 @app.route('/')
 def index():
-	return 'hey'
+	return 'SkipBait'
 
+# this is the route to access the meat of the application. you can test it with the following url. 
+# since the app consumes the url to skip as a url parameter, it is necessary to escape the url to skip.
+# http://127.0.0.1:5000/skip/http%3A%2F%2Fwww.buzzfeed.com%2Fbradesposito%2Fno-pants-dance
 @app.route('/skip/<path:path>')
 def skip_url(path):
 	site_html = requests.get(urllib.unquote(path)).text
