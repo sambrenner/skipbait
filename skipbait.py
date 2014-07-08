@@ -43,26 +43,25 @@ def get_sources(site_html):
 	# http://vimeo.com/55880815
 
 	vine_pattern = '(https?://(www\.)?vine.co/v/[A-Za-z0-9]+/?)'
-	vine = re.finditer(vine_pattern, site_html)
-
 	youtube_pattern = '(https?://(www\.)?youtube.com/watch\?v=[A-Za-z0-9]+)'
-	youtube = re.finditer(youtube_pattern, site_html)
-
 	vimeo_pattern = '(https?://(www\.)?(player\.)?vimeo.com/(video/)?[0-9]+)'
-	vimeo = re.finditer(vimeo_pattern, site_html)
 
+	patterns = [vine_pattern, youtube_pattern, vimeo_pattern]
 	sources = []
 
-	if vine:
-		for match in vine:
-			sources.append(match.group(0))
+	for pattern in patterns:
+		# perform regex find
+		find = re.finditer(pattern, site_html)
 
-	if youtube:
-		for match in youtube:
-			sources.append(match.group(0))
+		# extract full string and store in array
+		sources.extend(get_sources_from_regex_search(find))		
 
-	if vimeo:
-		for match in vimeo:
-			sources.append(match.group(0))
+	return sources
+
+def get_sources_from_regex_search(regex_search):
+	sources = []
+	
+	for match in regex_search:
+		sources.append(match.group(0))
 
 	return sources
