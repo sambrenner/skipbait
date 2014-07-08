@@ -51,9 +51,6 @@ def get_sources(site_html):
 	vimeo_pattern = '(https?://(www\.)?(player\.)?vimeo.com/(video/)?[0-9]+)'
 	vimeo = re.finditer(vimeo_pattern, site_html)
 
-	test_pattern = 'div'
-	test = re.finditer(test_pattern, site_html)
-
 	sources = []
 
 	if vine:
