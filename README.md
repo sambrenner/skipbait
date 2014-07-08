@@ -7,7 +7,7 @@ Sites like BuzzFeed and HuffPo use bombastic headlines and thumbnail images as b
 
 Why?
 ---
-We need to demand more of online media outlets. They have a responsibly in selecting and distributing content that is being ignored so that ad impressions can be maximized.
+We need to demand more of online media outlets. If BuzzFeed and HuffPo want to be seen as legitimate journalists, they need to start acting responsibly in selecting, distributing and presenting content.
 
 We also need to demand more of ourselves, as media consumers and sharers, to be aware of when we are being manipulated by media outlets.
 
