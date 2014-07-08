@@ -1,33 +1,65 @@
-# vine
-# https://vine.co/v/MPu0Tq52wiv/card
-
-# youtube
-# https://www.youtube.com/watch?v=ZwfLgXJpQd0
-
-# vimeo
-# http://player.vimeo.com/video/55880815
-# http://vimeo.com/55880815
+# here's a url to test this with. since the app consumes the url to skip as a url parameter,
+# it is necessary to escape the url to skip.
+# http://127.0.0.1:5000/skip/http%3A%2F%2Fwww.buzzfeed.com%2Fbradesposito%2Fno-pants-dance
 
 import requests
 import re
+import urllib
+from flask import Flask
+from flask import jsonify
 
-# page = requests.get('http://www.buzzfeed.com/elliewoodward/victoria-beckham-and-samuel-l-jackson-so-awkward').text
-page = requests.get('http://www.buzzfeed.com/bradesposito/no-pants-dance').text
+app = Flask(__name__)
+app.debug = True
 
-vine_pattern = 'https?://[www\.]?vine.co/v/[A-Za-z0-9]+/'
-vine = re.search(vine_pattern, page)
+@app.route('/')
+def index():
+	return 'hey'
 
-youtube_pattern = 'https?://[www\.]?youtube.com/watch\?v=[A-Za-z0-9]+'
-youtube = re.search(youtube_pattern, page)
+@app.route('/skip/<path:path>')
+def skip_url(path):
+	site_html = requests.get(urllib.unquote(path)).text
+	sources = get_sources(site_html)
 
-vimeo_pattern = 'https?://[www\.]?[player\.]?vimeo.com/[video/]?[0-9]+'
-vimeo = re.search(vimeo_pattern, page)
+	return jsonify(sources = sources)
 
-if vine:
-	print vine.group(0)
+if __name__ == '__main__':
+	app.run()
 
-if youtube:
-	print youtube.group(0)
+def get_sources(site_html):
+	# here are example uris for embedded content to help build the regexes. currently, it seems like this
+	# app will always have a bias towards what is considered a primary source - a factor of what sites I build 
+	# regexes to identify. I can limit the bias by building a final regex that will check for all src attributes
+	# of <iframe> tags, but this will throw a lot of false positives and miss a lot of actual primary sources.
+	# it will be necessary to keep these regexes up-to-date with popular sources for stolen material.
 
-if vimeo:
-	print vimeo.group(0)
+	# vine
+	# https://vine.co/v/MPu0Tq52wiv/card
+
+	# youtube
+	# https://www.youtube.com/watch?v=ZwfLgXJpQd0
+
+	# vimeo
+	# http://player.vimeo.com/video/55880815
+	# http://vimeo.com/55880815
+
+	vine_pattern = 'https?://[www\.]?vine.co/v/[A-Za-z0-9]+/'
+	vine = re.search(vine_pattern, site_html)
+
+	youtube_pattern = 'https?://[www\.]?youtube.com/watch\?v=[A-Za-z0-9]+'
+	youtube = re.search(youtube_pattern, site_html)
+
+	vimeo_pattern = 'https?://[www\.]?[player\.]?vimeo.com/[video/]?[0-9]+'
+	vimeo = re.search(vimeo_pattern, site_html)
+
+	sources = []
+
+	if vine:
+		sources.append(vine.group(0))
+
+	if youtube:
+		sources.append(youtube.group(0))
+
+	if vimeo:
+		sources.append(vimeo.group(0))
+
+	return sources
