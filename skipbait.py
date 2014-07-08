@@ -9,7 +9,7 @@ app.debug = True
 
 @app.route('/')
 def index():
-	return 'SkipBaitg'
+	return 'SkipBait'
 
 # this is the route to access the meat of the application. you can test it with the following urls. 
 # since the app consumes the url to skip as a url parameter, it is necessary to escape the url to skip.
