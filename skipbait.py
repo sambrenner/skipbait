@@ -9,11 +9,12 @@ app.debug = True
 
 @app.route('/')
 def index():
-	return 'SkipBait'
+	return 'SkipBaitg'
 
-# this is the route to access the meat of the application. you can test it with the following url. 
+# this is the route to access the meat of the application. you can test it with the following urls. 
 # since the app consumes the url to skip as a url parameter, it is necessary to escape the url to skip.
 # http://127.0.0.1:5000/skip/http%3A%2F%2Fwww.buzzfeed.com%2Fbradesposito%2Fno-pants-dance
+# http://127.0.0.1:5000/skip/http%3A%2F%2Fsamjbrenner.com%2Fnotes%2Fmariah-careys-hand%2F
 @app.route('/skip/<path:path>')
 def skip_url(path):
 	site_html = requests.get(urllib.unquote(path)).text
@@ -41,24 +42,30 @@ def get_sources(site_html):
 	# http://player.vimeo.com/video/55880815
 	# http://vimeo.com/55880815
 
-	vine_pattern = 'https?://[www\.]?vine.co/v/[A-Za-z0-9]+/'
-	vine = re.search(vine_pattern, site_html)
+	vine_pattern = '(https?://(www\.)?vine.co/v/[A-Za-z0-9]+/?)'
+	vine = re.finditer(vine_pattern, site_html)
 
-	youtube_pattern = 'https?://[www\.]?youtube.com/watch\?v=[A-Za-z0-9]+'
-	youtube = re.search(youtube_pattern, site_html)
+	youtube_pattern = '(https?://(www\.)?youtube.com/watch\?v=[A-Za-z0-9]+)'
+	youtube = re.finditer(youtube_pattern, site_html)
 
-	vimeo_pattern = 'https?://[www\.]?[player\.]?vimeo.com/[video/]?[0-9]+'
-	vimeo = re.search(vimeo_pattern, site_html)
+	vimeo_pattern = '(https?://(www\.)?(player\.)?vimeo.com/(video/)?[0-9]+)'
+	vimeo = re.finditer(vimeo_pattern, site_html)
+
+	test_pattern = 'div'
+	test = re.finditer(test_pattern, site_html)
 
 	sources = []
 
 	if vine:
-		sources.append(vine.group(0))
+		for match in vine:
+			sources.append(match.group(0))
 
 	if youtube:
-		sources.append(youtube.group(0))
+		for match in youtube:
+			sources.append(match.group(0))
 
 	if vimeo:
-		sources.append(vimeo.group(0))
+		for match in vimeo:
+			sources.append(match.group(0))
 
 	return sources
