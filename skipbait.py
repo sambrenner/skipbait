@@ -27,30 +27,24 @@ if __name__ == '__main__':
 	app.run()
 
 def get_sources(site_html):
-	# here are example uris for embedded content to help build the regexes. currently, it seems like this
-	# app will always have a bias towards what is considered a primary source - a factor of what sites I build 
-	# regexes to identify. I can limit the bias by building a final regex that will check for all src attributes
-	# of <iframe> tags, but this will throw a lot of false positives and miss a lot of actual primary sources.
-	# it will be necessary to keep these regexes up-to-date with popular sources for stolen material.
-
-	# vine
-	# https://vine.co/v/MPu0Tq52wiv/card
-
-	# youtube
-	# https://www.youtube.com/watch?v=ZwfLgXJpQd0
-
-	# vimeo
-	# http://player.vimeo.com/video/55880815
-	# http://vimeo.com/55880815
+	# currently, it seems like this app will always have a bias towards what is considered
+	# a primary source - a factor of what sites I build regexes to identify. I can limit the bias
+	# by building a final regex that will check for all src attributes of <iframe> tags, but this
+	# will throw a lot of false positives and miss a lot of actual primary sources. it will be
+	# necessary to keep these regexes up-to-date with popular sources for stolen material.
 
 	# when building the patterns, be sure to name the entire url as a capture group
 	# called <url> and the id of the embedded content as <id>. we will refer to the 
 	# groups in get_sources_from_regex_search()
-	vine_pattern = '(?P<url>(https?://(www\.)?vine.co/v/(?P<id>([A-Za-z0-9]+)/?)))'
+	vine_pattern = '(?P<url>(https?://(www\.)?vine.co/v/(?P<id>([A-Za-z0-9]+))/?))'
 	youtube_pattern = '(?P<url>(https?://(www\.)?youtube.com/watch\?v=(?P<id>([A-Za-z0-9]+))))'
 	vimeo_pattern = '(?P<url>(https?://(www\.)?(player\.)?vimeo.com/(video/)?(?P<id>([0-9]+))))'
+	instagram_pattern = '(?P<url>(https?://(www\.)?instagram.com/p/(?P<id>([A-Za-z0-9]+))/?))'
+	twitter_pattern = '(?P<url>(https?://(www\.)?twitter.com/[A-Za-z0-9]+/status/(?P<id>([0-9]+))))'
+	# reddit_pattern = 
+	# http://www.reddit.com/r/soccer/comments/2a6ejg/match_thread_second_half_brazil_vs_germany_world/cirxo6e
 
-	patterns = [vine_pattern, youtube_pattern, vimeo_pattern]
+	patterns = [vine_pattern, youtube_pattern, vimeo_pattern, instagram_pattern, twitter_pattern]
 	sources = []
 
 	for pattern in patterns:
