@@ -42,9 +42,12 @@ def get_sources(site_html):
 	# http://player.vimeo.com/video/55880815
 	# http://vimeo.com/55880815
 
-	vine_pattern = '(https?://(www\.)?vine.co/v/[A-Za-z0-9]+/?)'
-	youtube_pattern = '(https?://(www\.)?youtube.com/watch\?v=[A-Za-z0-9]+)'
-	vimeo_pattern = '(https?://(www\.)?(player\.)?vimeo.com/(video/)?[0-9]+)'
+	# when building the patterns, be sure to name the entire url as a capture group
+	# called <url> and the id of the embedded content as <id>. we will refer to the 
+	# groups in get_sources_from_regex_search()
+	vine_pattern = '(?P<url>(https?://(www\.)?vine.co/v/(?P<id>([A-Za-z0-9]+)/?)))'
+	youtube_pattern = '(?P<url>(https?://(www\.)?youtube.com/watch\?v=(?P<id>([A-Za-z0-9]+))))'
+	vimeo_pattern = '(?P<url>(https?://(www\.)?(player\.)?vimeo.com/(video/)?(?P<id>([0-9]+))))'
 
 	patterns = [vine_pattern, youtube_pattern, vimeo_pattern]
 	sources = []
@@ -60,8 +63,14 @@ def get_sources(site_html):
 
 def get_sources_from_regex_search(regex_search):
 	sources = []
+	ids = []
 	
 	for match in regex_search:
-		sources.append(match.group(0))
+		# use the <id> capturing group to prevent duplicates
+		id = match.group('id')
+
+		if not (id in ids):
+			ids.append(id)
+			sources.append(match.group('url'))
 
 	return sources
