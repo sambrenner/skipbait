@@ -17,10 +17,11 @@ def index():
 # http://127.0.0.1:5000/skip/http%3A%2F%2Fsamjbrenner.com%2Fnotes%2Fmariah-careys-hand%2F
 @app.route('/skip/<path:path>')
 def skip_url(path):
-	site_html = requests.get(urllib.unquote(path)).text
+	site_url = urllib.unquote(path)
+	site_html = requests.get(site_url).text
 	sources = get_sources(site_html)
 
-	return jsonify(sources = sources)
+	return jsonify(sources = sources, original_url = site_url)
 
 if __name__ == '__main__':
 	app.run()
