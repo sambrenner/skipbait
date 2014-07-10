@@ -1,8 +1,7 @@
 import requests
 import re
 import urllib
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify, render_template
 from flask.ext.cacheify import init_cacheify
 
 app = Flask(__name__)
@@ -10,7 +9,7 @@ cache = init_cacheify(app)
 
 @app.route('/')
 def index():
-	return 'SkipBait'
+	return render_template('layout.html')
 
 # this is the route to access the meat of the application. you can test it with the following urls. 
 # since the app consumes the url to skip as a url parameter, it is necessary to escape the url to skip.
