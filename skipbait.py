@@ -36,15 +36,17 @@ def get_sources(site_html):
 	# when building the patterns, be sure to name the entire url as a capture group
 	# called <url> and the id of the embedded content as <id>. we will refer to the 
 	# groups in get_sources_from_regex_search()
-	vine_pattern = '(?P<url>(https?://(www\.)?vine.co/v/(?P<id>([A-Za-z0-9]+))/?))'
-	youtube_pattern = '(?P<url>(https?://(www\.)?youtube.com/watch\?v=(?P<id>([A-Za-z0-9]+))))'
-	vimeo_pattern = '(?P<url>(https?://(www\.)?(player\.)?vimeo.com/(video/)?(?P<id>([0-9]+))))'
-	instagram_pattern = '(?P<url>(https?://(www\.)?instagram.com/p/(?P<id>([A-Za-z0-9]+))/?))'
-	twitter_pattern = '(?P<url>(https?://(www\.)?twitter.com/[A-Za-z0-9]+/status/(?P<id>([0-9]+))))'
-	# reddit_pattern = 
-	# http://www.reddit.com/r/soccer/comments/2a6ejg/match_thread_second_half_brazil_vs_germany_world/cirxo6e
+	vine_pattern = '(?P<url>(https?://(www\.)?vine\.co/v/(?P<id>([A-Za-z0-9]+))/?))'
+	youtube_pattern = '(?P<url>(https?://(www\.)?youtube\.com/watch\?v=(?P<id>([A-Za-z0-9]+))))'
+	vimeo_pattern = '(?P<url>(https?://(www\.)?(player\.)?vimeo\.com/(video/)?(?P<id>([0-9]+))))'
+	instagram_pattern = '(?P<url>(https?://(www\.)?instagram\.com/p/(?P<id>([A-Za-z0-9]+))/?))'
+	twitter_pattern = '(?P<url>(https?://(www\.)?twitter\.com/[A-Za-z0-9]+/status/(?P<id>([0-9]+))))'
+	reddit_comment_thread_pattern = '(?P<url>(https?://(www\.)?reddit\.com/r/[A-Za-z0-9]+/comments/[A-Za-z0-9]+/[a-z0-9_]+/(?P<id>([A-Za-z0-9]+))))'
+	flickr_pattern = '(?P<url>(https?://(www\.)?flickr\.com/photos/[A-Za-z0-9]+/(?P<id>([0-9]+))(/in/photostream/?)?))'
+	imgur_album_pattern = '(?P<url>(https?://(www\.)?imgur\.com/gallery/(?P<id>([A-Za-z0-9]+))))'
+	imgur_image_pattern = '(?P<url>(https?://(www\.)?(i\.)?imgur\.com/(?P<id>([A-Za-z0-9]+))\.(jpg|gif|png|jpeg)))'
 
-	patterns = [vine_pattern, youtube_pattern, vimeo_pattern, instagram_pattern, twitter_pattern]
+	patterns = [vine_pattern, youtube_pattern, vimeo_pattern, instagram_pattern, twitter_pattern, reddit_comment_thread_pattern, flickr_pattern, imgur_image_pattern, imgur_album_pattern]
 	sources = []
 
 	for pattern in patterns:
