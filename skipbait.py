@@ -3,9 +3,10 @@ import re
 import urllib
 from flask import Flask
 from flask import jsonify
+from flask.ext.cacheify import init_cacheify
 
 app = Flask(__name__)
-app.debug = True
+cache = init_cacheify(app)
 
 @app.route('/')
 def index():
@@ -17,9 +18,15 @@ def index():
 # http://127.0.0.1:5000/skip/http%3A%2F%2Fsamjbrenner.com%2Fnotes%2Fmariah-careys-hand%2F
 @app.route('/skip/<path:path>')
 def skip_url(path):
+	encoded_path = path
 	site_url = urllib.unquote(path)
-	site_html = requests.get(site_url).text
-	sources = get_sources(site_html)
+
+	sources = cache.get(encoded_path)
+
+	if not sources:
+		site_html = requests.get(site_url).text
+		sources = get_sources(site_html)
+		cache.set(encoded_path, sources)
 
 	return jsonify(sources = sources, original_url = site_url)
 
