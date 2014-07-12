@@ -43,7 +43,7 @@ def get_sources(site_html):
 	# called <url> and the id of the embedded content as <id>. we will refer to the 
 	# groups in get_sources_from_regex_search()
 	vine_pattern = '(?P<url>(https?://(www\.)?vine\.co/v/(?P<id>([A-Za-z0-9]+))/?))'
-	youtube_pattern = '(?P<url>(https?://(www\.)?youtube\.com/watch\?v=(?P<id>([A-Za-z0-9]+))))'
+	youtube_pattern = '(?P<url>(https?://(www\.)?youtube\.com/watch\?v=(?P<id>([[a-zA-Z0-9_-]{11}))))'
 	vimeo_pattern = '(?P<url>(https?://(www\.)?(player\.)?vimeo\.com/(video/)?(?P<id>([0-9]+))))'
 	instagram_pattern = '(?P<url>(https?://(www\.)?instagram\.com/p/(?P<id>([A-Za-z0-9]+))/?))'
 	twitter_pattern = '(?P<url>(https?://(www\.)?twitter\.com/[A-Za-z0-9]+/status/(?P<id>([0-9]+))))'
