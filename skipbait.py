@@ -3,13 +3,19 @@ import re
 import urllib
 from flask import Flask, jsonify, render_template
 from flask.ext.cacheify import init_cacheify
+from flask.ext.misaka import Misaka
 
 app = Flask(__name__)
+app.debug = True
+Misaka(app)
 cache = init_cacheify(app)
 
 @app.route('/')
 def index():
-	return render_template('layout.html')
+	# render README.md as index page. Misaka handles .md parsing in template
+	with app.open_resource('README.md') as r:
+		contents = r.read()
+		return render_template('layout.html', markdown_text=contents)
 
 # this is the route to access the meat of the application. you can test it with the following urls. 
 # since the app consumes the url to skip as a url parameter, it is necessary to escape the url to skip.
