@@ -5,7 +5,7 @@ SkipBait is a webservice and browser extension that allows clickbait to be skipp
 
 Sites like BuzzFeed and HuffPo use bombastic headlines and thumbnail images as bait to lure you towards embedded content so they can collect data on you and serve you ads. SkipBait bypasses this, meaning that links containing clickbait are redirected straight to the primary source (where you will likely encounter more ads and trackers, but that's for a different project to handle).
 
-SkipBait pairs well with ad blockers, tracker blockers, and script blockers.
+SkipBait pairs well with ad blockers, tracker blockers, and script blockers. SkipBait is created and maintained by [Sam Brenner](http://samjbrenner.com).
 
 Why?
 ---
@@ -30,7 +30,7 @@ https://skipbait.herokuapp.com/skip/http%3A%2F%2Fwww.buzzfeed.com%2Fexpresident%
 
 Returns
 
-```
+```json
 {
   "original_url": "http://www.buzzfeed.com/expresident/maru-is-at-it-again#30cfv3", 
   "sources": [
