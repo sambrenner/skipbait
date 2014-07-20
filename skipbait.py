@@ -7,7 +7,7 @@ from flask.ext.misaka import Misaka
 
 app = Flask(__name__)
 app.debug = True
-Misaka(app)
+Misaka(app, fenced_code=True)
 cache = init_cacheify(app)
 
 @app.route('/')
