@@ -57,7 +57,7 @@ def get_sources(site_html):
 	flickr_pattern = '(?P<url>(https?://(www\.)?flickr\.com/photos/[A-Za-z0-9]+/(?P<id>([0-9]+))(/in/photostream/?)?))'
 	imgur_album_pattern = '(?P<url>(https?://(www\.)?imgur\.com/gallery/(?P<id>([A-Za-z0-9]+))))'
 	imgur_image_pattern = '(?P<url>(https?://(www\.)?(i\.)?imgur\.com/(?P<id>([A-Za-z0-9]+))\.(jpg|gif|png|jpeg)))'
-	tumblr_pattern = '(?P<url>(https?://(www\.)?tumblr\.com/post/(?P<id>([0-9]+/[A-Za-z0-9\-]+))))'
+	tumblr_pattern = '(?P<url>(https?://(www\.)?([A-Za-z0-9\-]+)\.tumblr\.com/post/(?P<id>([0-9]+/[A-Za-z0-9\-]+))))'
 
 	patterns = [vine_pattern, youtube_pattern, vimeo_pattern, instagram_pattern, twitter_pattern, reddit_comment_thread_pattern, flickr_pattern, imgur_image_pattern, imgur_album_pattern, tumblr_pattern]
 	sources = []
