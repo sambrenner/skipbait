@@ -55,5 +55,7 @@ The server code is ready to deploy to as your own Heroku application. To do so:
 6. `git push heroku master`
 7. Your server will now be available at `http://your-app-name.herokuapp.com`.
 
-###How it's made
+###How it works
 SkipBait is built on [Python](https://www.python.org/) with [Flask](http://flask.pocoo.org/).
+
+When you send a URL to SkipBait, the application will first check its cache to see if it has already identified sources on the URL. If not, the application will load the HTML of the website (using [Requests](http://docs.python-requests.org/en/latest/)) and will then search the HTML for [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) that match URLs of websites often used as sources for clickbait articles (like YouTube, Twitter and Vine).
