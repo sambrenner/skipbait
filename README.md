@@ -7,6 +7,10 @@ Sites like BuzzFeed and HuffPo use bombastic headlines and thumbnail images as b
 
 SkipBait pairs well with ad blockers, tracker blockers, and script blockers. SkipBait is created and maintained by [Sam Brenner](http://samjbrenner.com).
 
+Download
+---
+SkipBait clients are currently available for Chrome and Firefox.
+
 Why?
 ---
 We need to demand more of online media outlets. If BuzzFeed and HuffPo want to be seen as legitimate journalists, they need to start acting responsibly in selecting, distributing and presenting content.
@@ -17,10 +21,11 @@ These points address much larger issues than this project can solve, but I hope 
 
 About
 ---
-This repo contains the source code for the SkipBait server. There are separate repos for the Chrome and Firefox extensions.
+###Source code
+There are separate repos for the [SkipBait Server](https://github.com/sambrenner/skipbait), the [Chrome Extension](https://github.com/sambrenner/skipbait-chrome) and the Firefox Add-on.
 
-###Using SkipBait
-SkipBait is currently online on [Heroku](https://skipbait.herokuapp.com/). To use the server, hit the `/skip/<path>` endpoint, where `<path>` is a [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) string referring to the URL you want to skip. The server will return a JSON object containing an array of URLs to primary sources, or an empty array if nothing was found.
+###Using the SkipBait server
+SkipBait is currently online via [Heroku](https://skipbait.herokuapp.com/). To use the server, hit the `/skip/<path>` endpoint, where `<path>` is a [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) string referring to the URL you want to skip. The server will return a JSON object containing an array of URLs to primary sources, or an empty array if nothing was found.
 
 For example, hitting the url
 
@@ -39,8 +44,16 @@ Returns
 }
 ```
 
+###Running your own SkipBait server
+The server code is ready to deploy to as your own Heroku application. To do so:
+
+1. Clone this repo: `git clone https://github.com/sambrenner/skipbait.git`
+2. Create an account on [Heroku](http://heroku.com) and download the [Toolbelt](https://toolbelt.heroku.com/)
+3. `cd skipbait/`
+4. `heroku apps:create your-app-name` (This should automatically add the `heroku` remote to Git. You might have to log in to Heroku if this is your first time using the toolbelt.)
+5. `heroku addons:add memcachier:dev` (SkipBait should theoretically work with any cache provider thanks to [flask-heroku-cacheify](https://github.com/rdegges/flask-heroku-cacheify) but I've only tested with MemCachier.)
+6. `git push heroku master`
+7. Your server will now be available at `http://your-app-name.herokuapp.com`.
+
 ###How it's made
 SkipBait is built on [Python](https://www.python.org/) with [Flask](http://flask.pocoo.org/).
-
-###Running your own SkipBait server
-The server code is ready to deploy to as your own Heroku application. To do this:
