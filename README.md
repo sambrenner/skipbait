@@ -9,7 +9,7 @@ SkipBait pairs well with ad blockers, tracker blockers, and script blockers. Ski
 
 Download
 ---
-SkipBait clients are currently available for [Chrome](https://github.com/sambrenner/skipbait-chrome#installing) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/skipbait/).
+SkipBait clients are currently available for [Chrome](https://github.com/sambrenner/skipbait-chrome#installingg) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/skipbait/).
 
 Why?
 ---
@@ -22,7 +22,7 @@ These points address much larger issues than this project can solve, but I hope 
 About
 ---
 ###Source code
-There are separate repos for the [SkipBait Server](https://github.com/sambrenner/skipbait), the [Chrome Extension](https://github.com/sambrenner/skipbait-chrome) and the Firefox Add-on.
+There are separate repos for the [SkipBait Server](https://github.com/sambrenner/skipbait), the [Chrome Extension](https://github.com/sambrenner/skipbait-chrome) and the [Firefox Add-on](https://github.com/sambrenner/skipbait-firefox).
 
 ###Using the SkipBait server
 SkipBait is currently online via [Heroku](https://skipbait.herokuapp.com/). To use the server, hit the `/skip/<path>` endpoint, where `<path>` is a [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) string referring to the URL you want to skip. The server will return a JSON object containing an array of URLs to primary sources, or an empty array if nothing was found.
