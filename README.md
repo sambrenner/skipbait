@@ -9,7 +9,7 @@ SkipBait pairs well with ad blockers, tracker blockers, and script blockers. Ski
 
 Download
 ---
-SkipBait clients are currently available for Chrome and Firefox.
+SkipBait clients are currently available for [Chrome](https://github.com/sambrenner/skipbait-chrome#installing) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/skipbait/).
 
 Why?
 ---
