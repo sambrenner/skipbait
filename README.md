@@ -13,7 +13,7 @@ SkipBait clients are currently available for [Chrome](https://github.com/sambren
 
 Why?
 ---
-We need to demand more of online media outlets. If BuzzFeed and HuffPo want to be seen as legitimate journalists, they need to start acting responsibly in selecting, distributing and presenting content.
+We need to demand more of online media outlets when they choose to act irresponsibly in selecting, distributing and presenting content. The appropriation of embeddable content for the purpose of user tracking and ad delivery is only one such example of this.
 
 We also need to demand more of ourselves, as media consumers and sharers, to be aware of when we are being manipulated by media outlets.
 
